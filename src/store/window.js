@@ -11,6 +11,8 @@ const useWindowStore = create(
         win.isOpen=true;
         win.zIndex=state.nextZIndex;
         win.data=data ?? win.data;
+        // opening a window should restore it from minimized state
+        win.isMinimized = false;
         state.nextZIndex+=1;
     }),
     closeWindow: (windowKey)=>set((state)=>{
@@ -18,12 +20,41 @@ const useWindowStore = create(
         win.isOpen=false;
         win.zIndex=INITIAL_Z_INDEX
         win.data=null;
+        // reset minimize/maximize when closed
+        win.isMinimized = false;
+        win.isMaximized = false;
         
     }),
     focusWindow: (windowKey)=>set((state)=>{
         const win=state.windows[windowKey];
         win.zIndex=state.nextZIndex;
         state.nextZIndex+=1;
+    }),
+    minimizeWindow: (windowKey)=>set((state)=>{
+        const win = state.windows[windowKey];
+        if(!win) return;
+        win.isMinimized = true;
+    }),
+    restoreWindow: (windowKey)=>set((state)=>{
+        const win = state.windows[windowKey];
+        if(!win) return;
+        win.isMinimized = false;
+        win.isMaximized = false;
+        win.isOpen = true;
+        win.zIndex = state.nextZIndex;
+        state.nextZIndex += 1;
+    }),
+    toggleMaximize: (windowKey)=>set((state)=>{
+        const win = state.windows[windowKey];
+        if(!win) return;
+        win.isMaximized = !win.isMaximized;
+        // if maximizing, ensure it's not minimized and bring to front
+        if(win.isMaximized){
+            win.isMinimized = false;
+            win.isOpen = true;
+            win.zIndex = state.nextZIndex;
+            state.nextZIndex += 1;
+        }
     }),
     
 })),

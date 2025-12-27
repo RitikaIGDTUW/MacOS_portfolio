@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 
 @import "tailwindcss";
-
+/* Custom inset brown shadow */
+.shadow-brown-inset {
+  box-shadow: inset 0 0 40px rgba(120, 72, 38, 0.5);
+}
 html,
-body {
+/* body {
   width: 100dvw;
   overflow: hidden;
   height: 100dvh;
@@ -11,7 +14,55 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+} */
+
+body {
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+  
+  /* Gradient background (lavender to soft blue) */
+  background-image: url("/images/wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
+
+
+/* ✨ Star Layer (more stars, still tiny) */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    radial-gradient(white 0.5px, transparent 1.8px),
+    radial-gradient(white 0.6px, transparent 1.8px),
+    radial-gradient(white 0.7px, transparent 2px),
+    radial-gradient(white 0.8px, transparent 2px);
+  
+
+  background-size:
+    150px 150px,
+    200px 200px,
+    250px 250px,
+    180px 180px;
+    
+
+  opacity: 0.45;
+  animation: twinkle 3.5s infinite ease-in-out alternate;
+  pointer-events: none;
+}
+
+
+/* ✨ Better twinkle animation */
+@keyframes twinkle {
+  0%   { opacity: 0.25; filter: brightness(0.8); }
+  50%  { opacity: 0.45; filter: brightness(1.4); }
+  100% { opacity: 0.20; filter: brightness(1); }
+}
+
+
 
 @theme {
   --font-georama: "Georama", sans-serif;
@@ -37,7 +88,7 @@ body {
   }
 
   nav {
-    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
+    @apply flex justify-between items-center bg-white/70 backdrop-blur-3xl p-2 px-5 select-none;
 
     div {
       @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -48,7 +99,7 @@ body {
     }
 
     ul {
-      @apply flex items-center gap-5 max-sm:hidden;
+      @apply flex items-center gap-7 max-sm:hidden;
 
       p {
         @apply text-sm cursor-pointer hover:underline transition-all;
@@ -82,11 +133,11 @@ body {
     @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
 
     .dock-container {
-      @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
+      @apply bg-white/50 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
     }
 
     .tooltip {
-      @apply !py-1 !px-3 !w-fit !text-center !text-xs !rounded-md !bg-blue-200 !text-blue-900 !shadow-2xl;
+      @apply !py-1 !px-3 !w-fit !text-center !text-xs !rounded-md !bg-white !text-blue-900 text-4xl font-bold !shadow-2xl;
     }
 
     .dock-icon {
@@ -119,7 +170,9 @@ body {
   }
 
   #safari {
-    @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    /* @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden; */
+    @apply w-4xl absolute top-40 left-2/12 bg-white rounded-xl overflow-hidden shadow-[inset_0_0_70px_rgba(120,72,38,0.5)];
+
 
     .search {
       @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-2;
@@ -163,7 +216,7 @@ body {
   }
 
   #terminal {
-    @apply w-xl absolute top-32 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-xl absolute top-32 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden shadow-[inset_0_0_80px_rgba(120,72,38,0.5)];
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -209,7 +262,7 @@ body {
   }
 
   #contact {
-    @apply max-w-2xl absolute top-60 left-5/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply max-w-2xl absolute top-60 left-5/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden shadow-[inset_0_0_100px_rgba(120,72,38,0.5)];
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -237,10 +290,10 @@ body {
   }
 
   #photos {
-    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden shadow-[inset_0_0_40px_rgba(120,72,38,0.5)];
 
     .sidebar {
-      @apply w-3/12 flex-none bg-gray-50 border-r border-gray-200 flex flex-col p-5;
+      @apply w-3/12 flex-none bg-gray-50 border-r border-gray-200 flex flex-col p-5 shadow-[inset_0_0_40px_rgba(120,72,38,0.5)];
 
       h2 {
         @apply text-xs font-medium text-gray-400 mb-1;
@@ -297,7 +350,7 @@ body {
   }
 
   #resume {
-    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden shadow-[inset_0_0_40px_rgba(120,72,38,0.5)];
 
     #window-header {
       h2 {
@@ -307,10 +360,11 @@ body {
   }
 
   #finder {
-    @apply absolute w-3xl left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl;
+    @apply absolute w-3xl left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl ;
+     
 
     .sidebar {
-      @apply w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3;
+      @apply w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3 shadow-[inset_0_0_30px_rgba(120,72,38,0.5)];
 
       h3 {
         @apply text-xs font-medium text-gray-400 mb-1;
@@ -334,7 +388,7 @@ body {
     }
 
     .content {
-      @apply flex-1 p-8 bg-white max-w-2xl relative;
+      @apply flex-1 p-8 bg-white max-w-2xl relative ;
 
       li {
         @apply absolute flex items-center flex-col gap-3;
@@ -351,7 +405,7 @@ body {
   }
 
   #txtfile {
-    @apply w-md absolute top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-md absolute top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden shadow-[inset_0_0_40px_rgba(120,72,38,0.5)];
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -359,7 +413,7 @@ body {
   }
 
   #imgfile {
-    @apply w-xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden shadow-[inset_0_0_40px_rgba(120,72,38,0.5)];
 
     #window-header {
       p {
