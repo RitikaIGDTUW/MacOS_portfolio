@@ -166,7 +166,12 @@ body::before {
   }
 
   #window-header {
-    @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400;
+    @apply relative flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-600;
+
+    h2 {
+      /* center the window title horizontally in the header */
+      @apply absolute left-1/2 -translate-x-1/2 text-center w-full pointer-events-none;
+    }
   }
 
   #safari {

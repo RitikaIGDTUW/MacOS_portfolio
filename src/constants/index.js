@@ -14,6 +14,11 @@ const navLinks = [
     name: "Resume",
     type: "resume",
   },
+  {
+    id: 2,
+    name: "Coding Profile",
+    type: "safari",
+  },
 ];
 
 const navIcons = [
@@ -44,8 +49,21 @@ const dockApps = [
   },
   {
     id: "safari",
-    name: "Articles", // was "Safari"
+    name: "CP profile", // was "Safari"
     icon: "safari.png",
+    canOpen: true,
+  },
+  {
+    id: "experience",
+    name: "Experience", // was "Trash"
+    icon: "seo (2).png",
+    canOpen: true,
+  },
+  
+  {
+    id: "terminal",
+    name: "Skills", // was "Terminal"
+    icon: "terminal.png",
     canOpen: true,
   },
   {
@@ -54,47 +72,38 @@ const dockApps = [
     icon: "photos.png",
     canOpen: true,
   },
+  
   {
     id: "contact",
     name: "Contact", // or "Get in touch"
     icon: "contact.png",
     canOpen: true,
   },
-  {
-    id: "terminal",
-    name: "Skills", // was "Terminal"
-    icon: "terminal.png",
-    canOpen: true,
-  },
-  {
-    id: "trash",
-    name: "Archive", // was "Trash"
-    icon: "trash.png",
-    canOpen: false,
-  },
+  
+  
 ];
 
 const blogPosts = [
   {
     id: 1,
-    date: "Sep 2, 2025",
+    date: "",
     title:
-      "TypeScript Explained: What It Is, Why It Matters, and How to Master It",
-    image: "/images/blog1.png",
-    link: "https://jsmastery.com/blog/typescript-explained-what-it-is-why-it-matters-and-how-to-master-it",
+      "Leetcode Profile - (1800+ Rating | Explore Various Problem-Solving Techniques)",
+    image: "/images/blogs2.png",
+    link: "https://leetcode.com/u/ritss_2910/",
   },
   {
     id: 2,
-    date: "Aug 28, 2025",
-    title: "The Ultimate Guide to Mastering Three.js for 3D Development",
-    image: "/images/blog2.png",
+    date: "",
+    title: "Codeforces Profile - (1100+ rating | Competitive Programming Challenges)",
+    image: "/images/code-forces.svg",
     link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-three-js-for-3d-development",
   },
   {
     id: 3,
-    date: "Aug 15, 2025",
-    title: "The Ultimate Guide to Mastering GSAP Animations",
-    image: "/images/blog3.png",
+    date: "",
+    title: "Geeks for Geeks Profile - (100+ Problems Solved | Enhance Your Coding Skills)",
+    image: "/images/blogs3.jpg",
     link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-gsap-animations",
   },
 ];
@@ -455,39 +464,38 @@ const RESUME_LOCATION = {
   ],
 };
 
-const TRASH_LOCATION = {
+const EXPERIENCE = {
   id: 4,
-  type: "trash",
-  name: "Trash",
-  icon: "/icons/trash.svg",
+  type: "experience",
+  name: "Experience",
+  icon: "/images/research.png",
   kind: "folder",
   children: [
     {
       id: 1,
-      name: "trash1.png",
-      icon: "/images/image.png",
+      name: "Goldman Sachs — Summer Analyst Intern",
+      icon: "/images/gs-logo.png", // put the logo/image path you want here
       kind: "file",
-      fileType: "img",
+      fileType: "text",
       position: "top-10 left-10",
-      imageUrl: "/images/trash-1.png",
-    },
-    {
-      id: 2,
-      name: "trash2.png",
-      icon: "/images/image.png",
-      kind: "file",
-      fileType: "img",
-      position: "top-40 left-80",
-      imageUrl: "/images/trash-2.png",
-    },
+      details: {
+        role: "Summer Analyst Intern",
+        company: "Goldman Sachs",
+        duration: "May 2026 – July 2026",
+        type: "Internship",
+        summary:
+          "Worked as a Summer Analyst Intern contributing to financial modeling, data analytics, and optimization of internal investment workflows.",
+      },
+    }
   ],
 };
+
 
 export const locations = {
   work: WORK_LOCATION,
   about: ABOUT_LOCATION,
   resume: RESUME_LOCATION,
-  trash: TRASH_LOCATION,
+  experience: EXPERIENCE,
 };
 
 const INITIAL_Z_INDEX = 1000;
@@ -498,6 +506,7 @@ const WINDOW_CONFIG = {
   resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
   safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
   photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
+  experience: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
   terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
   txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
   imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },

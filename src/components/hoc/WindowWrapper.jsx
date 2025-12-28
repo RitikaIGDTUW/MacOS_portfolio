@@ -71,7 +71,7 @@ const WindowWrapper=(Component, windowKey)=>{
          id={windowKey} 
          ref={ref} 
          style={{zIndex}}
-         className="absolute"
+         className="absolute bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden shadow-[inset_0_0_80px_rgba(120,72,38,0.5)]"
          >
             <Component {...props}/>
         </section>
